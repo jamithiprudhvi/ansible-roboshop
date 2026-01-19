@@ -42,7 +42,7 @@
         remote_src: yes       
 
     - name: install nodejs dependencies
-      ansible.builtin.comand: npm install  
+      ansible.builtin.command: npm install  
 
     - name: copying catalogue service file
       ansible.builtin.copy:
