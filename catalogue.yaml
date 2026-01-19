@@ -32,21 +32,20 @@
         url: https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
         dest: /tmp
 
-    - name: current directory
-      ansible.builtin.command: cd /app    
+    # - name: current directory
+    #   ansible.builtin.command: cd /app    
 
     - name: unzip the catalogue code
       ansible.builtin.unarchive:
-        src: /tmp
-        dest: /app
-        remote_src: yes       
+        src: /tmp/catalogue-v3.zip
+        dest: /app     
 
-    - name: install nodejs dependencies
-      ansible.builtin.command: npm install  
+    # - name: install nodejs dependencies
+    #   ansible.builtin.command: npm install  
 
-    - name: copying catalogue service file
-      ansible.builtin.copy:
-        src: catalogue.service
-        dest: /etc/systemd/system/catalogue.service      
+    # - name: copying catalogue service file
+    #   ansible.builtin.copy:
+    #     src: catalogue.service
+    #     dest: /etc/systemd/system/catalogue.service      
 
   
