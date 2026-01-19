@@ -20,7 +20,6 @@
 
     - name: replace the bind ip
       ansible.builtin.replace:
-       name: replace bind ip
        path: /etc/mongod.conf
        regexp: '127.0.0.1'
        replace: '0.0.0.0'
