@@ -9,9 +9,9 @@
     - name: enabled nodejs:2.0
       ansible.builtin.command: dnf module enable nodejs:2.0 -y
 
-    - name: install nodejs:2.0
+    - name: install nodejs:20
       ansible.builtin.package:
-        name: nodejs:2.0
+        name: nodejs:20
         state: present     
 
     - name: create user for catalogue
