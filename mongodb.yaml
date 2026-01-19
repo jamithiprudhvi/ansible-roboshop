@@ -16,4 +16,11 @@
       ansible.builtin.service:
        name: mongod
        state: started
-       enabled: true   
+       enabled: true  
+
+    - name: replace the bind ip
+      ansible.builtin.replace:
+       name: replace bind ip
+       path: /etc/mongod.conf
+       regexp: 0.0.0.0
+       replace: 127.0.0.0  
