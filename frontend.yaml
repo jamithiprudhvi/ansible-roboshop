@@ -22,11 +22,16 @@
     - name: Delete default nginx content
       ansible.builtin.file:
         state: absent
-        path: /usr/share/nginx/html/*       
+        path: /usr/share/nginx/html
+
+    - name: create directory for frontend
+      ansible.builtin.file:
+        state: directory
+        path: /usr/share/nginx/html
 
     - name: download frontend content
       ansible.builtin.get_url:
-        url: curl -o /tmp/frontend.zip https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
+        url: https://roboshop-artifacts.s3.amazonaws.com/frontend-v3.zip
         dest: /tmp/frontend-v3.zip
 
     - name: unzip frontend content
@@ -34,6 +39,16 @@
        src: /tmp/frontend-v3.zip
        dest: /usr/share/nginx/html
        remote_src: yes    
+
+    - name: Remove nginx config file
+      ansible.builtin.file:
+        path: /etc/nginx/nginx.conf
+        state: absent
+
+    - name: copy nginx config file
+      ansible.builtin.copy:
+       src: nginx.conf
+       dest: /etc/nginx/nginx.conf    
 
     - name: restart nginx
       ansible.builtin.service:
