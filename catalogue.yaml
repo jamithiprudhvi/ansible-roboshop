@@ -72,6 +72,9 @@
         state: present
 
     - name: load catalogue schema
-      ansible.builtin.command: mongosh --host mongodb.prudhvi.shop </app/db/master-data.js         
+      community.mongodb.mongodb_shell:
+        file: "/app/db/master-data.js"
+        idempotent: yes
+        login_host: mongodb.prudhvi.shop
 
   
