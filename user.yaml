@@ -37,7 +37,7 @@
 
     - name: unzip the user code
       ansible.builtin.unarchive:
-        src: /tmp/user.zip
+        src: /tmp/user-v3.zip
         dest: /app  
         remote_src: yes    
 
