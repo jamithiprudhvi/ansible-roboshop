@@ -19,4 +19,16 @@
        path: /etc/redis/redis.conf
        regexp: '127.0.0.1'
        replace: '0.0.0.0'   
+
+    - name: disable protected mode 
+      ansible.builrtin.linefile:
+       path: /etc/redis/redis.conf
+       regexp: '^protected-mode yes'
+       line: 'protected-mode no'   
+
+    - name: start redis service
+      ansible.builtin.service:
+       name: redis
+       state: started
+       enabled: true   
       
