@@ -52,7 +52,7 @@
 
     - name: deamon reload service
       ansible.builtin.systemd_service:
-        deamon_reload: true
+        daemon_reload: true
 
     - name: start and enable catalogue service
       ansible.builtin.service:
