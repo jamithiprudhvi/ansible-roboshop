@@ -71,10 +71,14 @@
         name: mongodb-mongosh
         state: present
 
+    - name: check products loaded or not
+      ansible.builtin.command: (mongosh --host mongodb.prudhvi.shop --eval 'db.getMongo().getDBNames().indexOf("catalogue")
+      register: catalogue_output
+
     - name: load catalogue schema
-      community.mongodb.mongodb_shell:
-        file: "/app/db/master-data.js"
-        idempotent: yes
-        login_host: mongodb.prudhvi.shop
+      ansible.builtin.command: mongosh --host mongodb.prudhvi.shop </app/db/master-data.js
+      when: catalogue_output.stdout | int < 0 
+
+
 
   
