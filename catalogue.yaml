@@ -58,6 +58,20 @@
       ansible.builtin.service:
         name: catalogue
         state: started
-        enabled: true         
+        enabled: true    
+
+
+    - name: copy mongodb repo files
+      ansible.builtin.copy:
+        src: mongo.repo
+        dest: /etc/yum.repos.d/mongo.repo
+
+    - name: install mongodb client
+      ansible.builtin.dnf:
+        name: mongodb-mongosh
+        state: present
+
+    - name: load catalogue schema
+      ansible.builtin.command: mongosh --host mongodb.prudhvi.shop </app/db/master-data.js         
 
   
