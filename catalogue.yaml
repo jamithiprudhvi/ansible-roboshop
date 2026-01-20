@@ -77,7 +77,7 @@
 
     - name: print catalogue_output
       ansible.builtin.debug:
-       msg: {{ "catalogue_output" }}  
+       msg: "{{ catalogue_output }}"  
 
     - name: load catalogue schema
       ansible.builtin.command: mongosh --host mongodb.prudhvi.shop </app/db/master-data.js
